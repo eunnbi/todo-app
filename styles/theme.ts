@@ -1,9 +1,10 @@
 export const lightTheme = {
   color: {
-    bgColor: "#f0efea",
+    bgColor: "#f2f2f2",
     boxColor: "#fff",
     textColor: "#000",
     shadowColor: "rgba(0, 0, 0, 0.2)",
+    mainColor: "#64E6AC",
   },
   name: "light" as const,
 };
@@ -11,9 +12,10 @@ export const lightTheme = {
 export const darkTheme = {
   color: {
     bgColor: "#000",
-    boxColor: "#252525",
+    boxColor: "#383838",
     textColor: "#fff",
     shadowColor: "#000",
+    mainColor: "#45bf8b",
   },
   name: "dark" as const,
 };
