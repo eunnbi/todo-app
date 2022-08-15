@@ -1,20 +1,16 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { todoListState } from "../../store/todo";
-
-const TODO = "todo" as const;
+import { getTodos, saveTodos } from "../../utils/todos";
 
 export const useTodoList = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
   useEffect(() => {
-    const value = localStorage.getItem(TODO);
-    if (value !== null) {
-      setTodoList(JSON.parse(value));
+    if (todoList.length > 0 && todoList[0].id === 0) {
+      setTodoList(getTodos());
+    } else {
+      saveTodos(todoList);
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(TODO, JSON.stringify(todoList));
   }, [todoList]);
   return { todoList };
 };
