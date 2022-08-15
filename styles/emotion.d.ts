@@ -10,5 +10,10 @@ declare module "@emotion/react" {
       mainColor: string;
     };
     name: "light" | "dark";
+    device: {
+      tablet: string;
+      mobile: string;
+      smallMobile: string;
+    };
   }
 }
