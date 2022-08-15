@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useTodoList } from "../../hooks/useTodoList";
+import { useTodoList } from "./useTodoList";
 import TodoItem from "../TodoItem";
 
 const TodoList = () => {
