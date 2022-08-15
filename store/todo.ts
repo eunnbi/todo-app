@@ -8,7 +8,7 @@ export interface TodoState {
 
 export const todoListState = atom<TodoState[]>({
   key: "todoListState",
-  default: [],
+  default: [{ id: 0, text: "default", done: false }],
 });
 
 export const todoListStatsState = selector({
