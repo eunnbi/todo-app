@@ -1,3 +1,15 @@
+const deviceSizes = {
+  tablet: "900px",
+  mobile: "600px",
+  smallMobile: "350px",
+};
+
+const device = {
+  tablet: `screen and (max-width: ${deviceSizes.tablet})`,
+  mobile: `screen and (max-width: ${deviceSizes.mobile})`,
+  smallMobile: `screen and (max-width: ${deviceSizes.smallMobile})`,
+};
+
 export const lightTheme = {
   color: {
     bgColor: "#f2f2f2",
@@ -7,6 +19,7 @@ export const lightTheme = {
     mainColor: "#64E6AC",
   },
   name: "light" as const,
+  device,
 };
 
 export const darkTheme = {
@@ -18,4 +31,5 @@ export const darkTheme = {
     mainColor: "#45bf8b",
   },
   name: "dark" as const,
+  device,
 };
