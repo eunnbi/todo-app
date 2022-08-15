@@ -24,6 +24,7 @@ const EditInput = ({ text, id, notShowEditInput }: EditInputProps) => {
   return (
     <form onSubmit={onSubmit}>
       <Input value={form.todo} onChange={onChange} name="todo" />
+      <Text>수정 후 Enter를 누르세요 :)</Text>
     </form>
   );
 };
@@ -33,4 +34,10 @@ export default EditInput;
 const Input = styled.input`
   border-bottom: 1px solid lightgray;
   width: 100%;
+`;
+
+const Text = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  opacity: 0.7;
 `;
