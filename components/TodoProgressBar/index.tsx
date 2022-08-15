@@ -1,15 +1,9 @@
-import { useTodoList } from "../../hooks/useTodoList";
 import styled from "@emotion/styled";
-import { css } from "@emotion/css";
+import { useRecoilValue } from "recoil";
+import { todoListStatsState } from "../../store/todo";
 
 const TodoProgressBar = () => {
-  const { todoList } = useTodoList();
-  const totalNum = todoList.length;
-  const totalDoneNum = todoList.filter((todo) => todo.done).length;
-  const percentage =
-    totalNum === 0
-      ? 0
-      : Number(((totalDoneNum / todoList.length) * 100).toFixed(0));
+  const { percentage } = useRecoilValue(todoListStatsState);
   return (
     <Wrapper>
       <Bar>
