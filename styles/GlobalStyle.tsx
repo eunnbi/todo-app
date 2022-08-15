@@ -14,18 +14,22 @@ const GlobalStyle = () => {
           color: ${theme.color.textColor};
         }
         ::-webkit-scrollbar {
-          width: 5px; /* 세로축 스크롤바 길이 */
-          height: 5px; /* 가로축 스크롤바 길이 */
+          display: none;
         }
-        ::-webkit-scrollbar-track {
-          background-color: ${theme.color.boxColor};
+        @media ${theme.device.tablet} {
+          html {
+            font-size: 14px;
+          }
         }
-        ::-webkit-scrollbar-track-piece {
-          background-color: ${theme.color.boxColor};
+        @media ${theme.device.mobile} {
+          html {
+            font-size: 12px;
+          }
         }
-        ::-webkit-scrollbar-thumb {
-          border-radius: 8px;
-          background-color: lightgray;
+        @media ${theme.device.smallMobile} {
+          html {
+            font-size: 10px;
+          }
         }
       `}
     />
