@@ -11,11 +11,12 @@ export const useLogin = ({ email }: AuthState) => {
   const setUser = useSetRecoilState(userState);
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     if (email === "") {
       setError(true);
       setHelperText("이메일을 입력해주세요!");
+      return;
     }
+    setLoading(true);
     const { user, error } = await signInEmail({ email });
     if (error) {
       setError(true);
