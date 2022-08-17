@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useForm } from "../../../hooks/useForm";
 import userState from "../../../store/user";
@@ -21,16 +21,27 @@ const ProfileForm = ({ open, handleClose }: ProfileFormProps) => {
   >({
     username: "",
   });
+  const [errorText, setErrorText] = useState("");
   const { loading, editProfile } = useEditProfile();
+  const onClose = () => {
+    handleClose();
+    initialize();
+    setErrorText("");
+  };
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (user?.id === undefined) return;
+    if (form.username === "") {
+      setErrorText("이름을 입력하세요!");
+      return;
+    }
     editProfile(user.id, form.username);
-    initialize();
-    handleClose();
+    onClose();
   };
+
   return (
-    <CustomModal open={open} handleClose={handleClose}>
+    <CustomModal open={open} handleClose={onClose}>
       <Form onSubmit={onSubmit}>
         <h2>이름 수정하기</h2>
         <FormInput
@@ -38,9 +49,9 @@ const ProfileForm = ({ open, handleClose }: ProfileFormProps) => {
           value={form.username}
           label="이름"
           onChange={onChange}
-          error={false}
+          error={errorText !== ""}
           type="text"
-          helperText=""
+          helperText={errorText}
         />
         <SubmitButton variant="contained" type="submit">
           {loading ? "수정하는 중..." : "수정하기"}
