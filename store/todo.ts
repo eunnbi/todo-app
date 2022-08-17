@@ -1,9 +1,20 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { TodoState } from "../types/todo";
+import { getTodos } from "../api/todo";
 
 export const todoListState = atom<TodoState[]>({
   key: "todoListState",
-  default: [{ id: 0, text: "default", done: false }],
+  default: [],
+});
+
+export const todoListQuery = selectorFamily<TodoState[], string | undefined>({
+  key: "todoLsitQuery",
+  get: (userId) => async () => {
+    if (userId === undefined) return [];
+    const { data, error } = await getTodos(userId);
+    if (error) return [];
+    return data;
+  },
 });
 
 export const todoListStatsState = selector({
