@@ -19,8 +19,8 @@ export default ThemeButton;
 
 const Button = styled.button<{ name: "light" | "dark" }>`
   position: fixed;
-  top: 10px;
-  right: 10px;
+  bottom: 0.6rem;
+  right: 0.6rem;
   z-index: 5;
   border-radius: 2rem;
   display: flex;
