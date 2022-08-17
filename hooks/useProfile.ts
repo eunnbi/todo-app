@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { getProfile } from "../../api/profile";
+import { getProfile } from "../api/profile";
 import { useRecoilState } from "recoil";
-import { profileState } from "../../store/profile";
+import { profileState } from "../store/profile";
 
 export const useProfile = (
   id: string | undefined,
