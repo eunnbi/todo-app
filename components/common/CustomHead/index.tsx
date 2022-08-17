@@ -1,9 +1,9 @@
 import Head from "next/head";
 
-const CustomHead = () => {
+const CustomHead = ({ title }: { title: string }) => {
   return (
     <Head>
-      <title>Todo App</title>
+      <title>{title}</title>
     </Head>
   );
 };
