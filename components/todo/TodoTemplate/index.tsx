@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { useToggle } from "../../hooks/useToggle";
-import ThemeButton from "../ThemeButton";
+import { useToggle } from "../../../hooks/useToggle";
 import TodoInput from "../TodoInput";
 import InputShowButton from "../TodoInput/InputShowButton";
 import TodoList from "../TodoList";
@@ -14,9 +13,6 @@ const TodoTemplate = () => {
       <TodoTitle />
       <TodoProgressBar />
       <TodoList />
-      <Bottom>
-        <ThemeButton />
-      </Bottom>
       {showInput ? <TodoInput /> : null}
       <InputShowButton onClick={setShowInput} showInput={showInput} />
     </Wrapper>
@@ -30,18 +26,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.color.boxColor};
-  max-width: 500px;
-  width: 90vw;
+  width: 100%;
   height: 80vh;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: ${({ theme }) => `1px 5px 10px ${theme.color.shadowColor}`};
-`;
-
-const Bottom = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 1rem;
-  z-index: 1;
 `;

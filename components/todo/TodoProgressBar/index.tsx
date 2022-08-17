@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRecoilValue } from "recoil";
-import { todoListStatsState } from "../../store/todo";
+import { todoListStatsState } from "../../../store/todo";
 
 const TodoProgressBar = () => {
   const { percentage } = useRecoilValue(todoListStatsState);

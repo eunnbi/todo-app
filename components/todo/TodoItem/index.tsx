@@ -1,4 +1,4 @@
-import { TodoState } from "../../store/todo";
+import { TodoState } from "../../../types/todo";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
@@ -7,15 +7,16 @@ import EditInput from "./EditInput";
 import { useEditInput } from "./useEditInput";
 import { useDeleteTodo } from "./useDeleteTodo";
 
-const TodoItem = ({ id, text, done }: TodoState) => {
+const TodoItem = (todo: TodoState) => {
+  const { id, text, done } = todo;
   const { isEdit, showEditInput, notShowEditInput } = useEditInput();
-  const { deleteTodo } = useDeleteTodo(id);
+  const { deleteUserTodo } = useDeleteTodo(id);
   return (
     <Item>
       <Wrapper>
-        <CheckBox done={done} id={id} />
+        <CheckBox {...todo} />
         {isEdit ? (
-          <EditInput text={text} id={id} notShowEditInput={notShowEditInput} />
+          <EditInput todo={todo} notShowEditInput={notShowEditInput} />
         ) : (
           <span
             className={css`
@@ -29,7 +30,7 @@ const TodoItem = ({ id, text, done }: TodoState) => {
       </Wrapper>
       <ControlBox>
         <MdOutlineEdit onClick={showEditInput} />
-        <MdDeleteOutline onClick={deleteTodo} />
+        <MdDeleteOutline onClick={deleteUserTodo} />
       </ControlBox>
     </Item>
   );

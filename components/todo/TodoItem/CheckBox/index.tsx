@@ -1,11 +1,11 @@
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "@emotion/styled";
-import { TodoState } from "../../../store/todo";
+import { TodoState } from "../../../../types/todo";
 import { useCheckTodo } from "./useCheckTodo";
 
-const CheckBox = ({ done, id }: Pick<TodoState, "done" | "id">) => {
-  const { checkToggle } = useCheckTodo(id);
+const CheckBox = ({ id, done, text }: TodoState) => {
+  const { checkToggle } = useCheckTodo({ id, done, text });
   return (
     <Button done={done} onClick={checkToggle} type="button">
       {done ? <IoMdCheckboxOutline /> : <MdCheckBoxOutlineBlank />}
