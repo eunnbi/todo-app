@@ -3,25 +3,32 @@ import styled from "@emotion/styled";
 import CustomHead from "../components/common/CustomHead";
 import TodoTemplate from "../components/todo/TodoTemplate";
 import { useSession } from "../hooks/useSession";
+import { useProfile } from "../hooks/useProfile";
+import { useUser } from "../hooks/useUser";
 import LoginForm from "../components/login/LoginForm";
 import Header from "../components/Header";
 
 const Home: NextPage = () => {
   const { session } = useSession();
+  const { user } = useUser();
+  const { profile } = useProfile(user?.id, user?.email);
+  const title =
+    profile.username !== "" ? `${profile.username}'s Todo App` : "Todo App";
   return (
-    <>
-      <CustomHead />
-      <Wrapper>
-        {session === null ? (
+    <Wrapper>
+      {session === null ? (
+        <>
+          <CustomHead title="Welcome to Todo App :)" />
           <LoginForm />
-        ) : (
-          <>
-            <Header />
-            <TodoTemplate />
-          </>
-        )}
-      </Wrapper>
-    </>
+        </>
+      ) : (
+        <>
+          <CustomHead title={title} />
+          <Header title={title} />
+          <TodoTemplate />
+        </>
+      )}
+    </Wrapper>
   );
 };
 
