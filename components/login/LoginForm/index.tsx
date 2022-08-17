@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { AuthState } from "../../../types/auth";
 import { useLogin } from "./useLogin";
+import { signInGoogle } from "../../../api/auth";
 
 const LoginForm = () => {
   const { form, onChange } = useForm<AuthState>({
@@ -23,13 +24,18 @@ const LoginForm = () => {
           onChange={onChange}
           helperText={helperText}
         />
-        <SubmitButton
-          variant="contained"
-          type="submit"
-          disabled={loading ? true : false}
-        >
-          {loading ? "링크 보내는 중... " : "로그인 링크 보내기"}
-        </SubmitButton>
+        <ButtonBox>
+          <SubmitButton
+            variant="contained"
+            type="submit"
+            disabled={loading ? true : false}
+          >
+            {loading ? "링크 보내는 중... " : "로그인 링크 보내기"}
+          </SubmitButton>
+          <GoogleLoginButton onClick={signInGoogle}>
+            구글로 로그인하기
+          </GoogleLoginButton>
+        </ButtonBox>
       </Form>
     </FormWrapper>
   );
@@ -64,7 +70,24 @@ const SubmitButton = styled(Button)`
   background-color: #000;
   color: white;
   padding: 0.5rem 0;
+  font-family: NotoSans;
   &:hover {
     background-color: #000;
   }
+`;
+
+const GoogleLoginButton = styled(Button)`
+  background-color: #4285f4;
+  color: white;
+  padding: 0.5rem 0;
+  font-family: NotoSans;
+  &:hover {
+    background-color: #4285f4;
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
