@@ -1,19 +1,15 @@
-import { useUser } from "../../hooks/useUser";
 import styled from "@emotion/styled";
 import HeaderMenu from "./HeaderMenu";
-import { useProfile } from "./useProfile";
 import { useModal } from "../../hooks/useModal";
 import ProfileForm from "./ProfileForm";
 
-const Header = () => {
-  const { user } = useUser();
-  const { profile } = useProfile(user?.id, user?.email);
+const Header = ({ title }: { title: string }) => {
   const { open, handleOpen, handleClose } = useModal();
 
   return (
     <>
       <Wrapper>
-        <h1>{profile.username !== "" && profile.username}'s Todo App</h1>
+        <h1>{title}</h1>
         <HeaderMenu handleOpen={handleOpen} />
       </Wrapper>
       <ProfileForm open={open} handleClose={handleClose} />
