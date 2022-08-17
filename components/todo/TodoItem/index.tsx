@@ -1,5 +1,6 @@
 import { TodoState } from "../../../types/todo";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+import { Tooltip, IconButton } from "@mui/material";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import CheckBox from "./CheckBox";
@@ -29,8 +30,16 @@ const TodoItem = (todo: TodoState) => {
         )}
       </Wrapper>
       <ControlBox>
-        <MdOutlineEdit onClick={showEditInput} />
-        <MdDeleteOutline onClick={deleteUserTodo} />
+        <Tooltip title="수정" onClick={showEditInput}>
+          <IconButton>
+            <MdOutlineEdit />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="삭제" onClick={deleteUserTodo}>
+          <IconButton>
+            <MdDeleteOutline />
+          </IconButton>
+        </Tooltip>
       </ControlBox>
     </Item>
   );
@@ -40,10 +49,11 @@ export default TodoItem;
 
 const ControlBox = styled.div`
   position: absolute;
+  top: 50%;
   right: 0.5rem;
+  transform: translateY(-50%);
   display: none;
   svg {
-    margin-left: 0.5rem;
     color: ${({ theme }) => theme.color.mainColor};
   }
 `;
